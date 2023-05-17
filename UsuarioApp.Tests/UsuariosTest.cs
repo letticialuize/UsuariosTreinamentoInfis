@@ -1,22 +1,17 @@
 ﻿using Bogus;
 using FluentAssertions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 using UsuarioApp.Tests.Helpers;
 using UsuariosApp.Application.Models.Requests;
 using UsuariosApp.Application.Models.Responses;
 using Xunit;
 
-namespace UsuarioApp.Tests
+namespace UsuariosApp.Tests
 {
     public class UsuariosTest
     {
         [Fact]
-        public async Task<CriarContaResponseDTO> Usuarios_Post_CriarConta_Returns_Created()
+        public async Task<CriarContaRequestDTO> Usuarios_Post_CriarConta_Returns_Created()
         {
             var faker = new Faker("pt_BR");
             var request = new CriarContaRequestDTO
@@ -40,11 +35,11 @@ namespace UsuarioApp.Tests
             response.Email.Should().Be(request.Email);
             response.DataHoraCriacao.Should().NotBeNull();
 
-            return response;
+            return request;
         }
 
         [Fact]
-        public async void Usuarios_Post_CriarConta_Returns_BadRequest()
+        public async Task Usuarios_Post_CriarConta_Returns_BadRequest()
         {
             var usuario = await Usuarios_Post_CriarConta_Returns_Created();
 
@@ -61,20 +56,64 @@ namespace UsuarioApp.Tests
             result.StatusCode
                 .Should()
                 .Be(HttpStatusCode.BadRequest);
+        }
 
+        [Fact]
+        public async Task Usuarios_Post_Autenticar_Returns_Ok()
+        {
+            var usuario = await Usuarios_Post_CriarConta_Returns_Created();
+
+            var request = new AutenticarRequestDTO
+            {
+                Email = usuario.Email,
+                Senha = usuario.Senha
+            };
+
+            var content = TestHelper.CreateContent(request);
+            var result = await TestHelper.CreateClient.PostAsync("/api/usuarios/autenticar", content);
+
+            result.StatusCode
+                .Should()
+                .Be(HttpStatusCode.OK);
+
+            var response = TestHelper.ReadResponse<AutenticarResponseDTO>(result);
+
+            response.Email.Should().Be(request.Email);
+            response.AccessToken.Should().NotBeNullOrEmpty();
+            response.DataHoraExpiracao.Should().NotBeNull();
+        }
+
+        [Fact]
+        public async Task Usuarios_Post_Autenticar_Returns_Unauthorized()
+        {
+            var faker = new Faker("pt_BR");
+            var request = new AutenticarRequestDTO
+            {
+                Email = faker.Internet.Email(),
+                Senha = "@Teste321"
+            };
+
+            var content = TestHelper.CreateContent(request);
+            var result = await TestHelper.CreateClient.PostAsync("/api/usuarios/autenticar", content);
+
+            result.StatusCode
+                .Should()
+                .Be(HttpStatusCode.Unauthorized);
+        }
+
+        [Fact(Skip = "Não implementado.")]
+        public void Usuarios_Post_RecuperarSenha_Returns_Ok()
+        {
 
         }
 
-        [Fact(Skip = "Não implementado")]
-        public void Usuarios_Post_CriarConta_Returns_Ok()
+        [Fact(Skip = "Não implementado.")]
+        public void Usuarios_Post_RecuperarSenha_Returns_NotFound()
         {
-            //TODO
-        }
 
-        [Fact(Skip = "Não implementado")]
-        public void Usuarios_Post_CriarConta_Returns_Unathorized()
-        {
-            //TODO
         }
     }
 }
+
+
+

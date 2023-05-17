@@ -25,7 +25,7 @@ namespace UsuariosApp.API.Controllers
         [ProducesResponseType(typeof(AutenticarResponseDTO), StatusCodes.Status200OK)]
         public IActionResult Autenticar(AutenticarRequestDTO dto)
         {
-            return Ok();
+            return StatusCode(200, _usuarioAppService?.Autenticar(dto));
         }
 
         /// <summary>
@@ -38,6 +38,18 @@ namespace UsuariosApp.API.Controllers
         public IActionResult CriarConta(CriarContaRequestDTO dto)
         {
             return StatusCode(201, _usuarioAppService?.CriarConta(dto));
+        }
+
+        /// <summary>
+        /// Recuperação de senha do usuário
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("recuperar-senha")]
+        [ProducesResponseType(typeof(RecuperarSenhaResponseDTO), StatusCodes.Status200OK)]
+        public IActionResult RecuperarSenha(RecuperarSenhaRequestDTO dto)
+        {
+            return StatusCode(200, _usuarioAppService?.RecuperarSenha(dto));
         }
     }
 }

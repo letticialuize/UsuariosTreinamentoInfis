@@ -25,6 +25,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UsuariosApp.Infra.Data", "U
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UsuarioApp.Tests", "UsuarioApp.Tests\UsuarioApp.Tests.csproj", "{BC6FF0AE-F7D8-442E-A21D-6F427D9E62F3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UsuariosApp.Infra.Messages", "UsuariosApp.Infra.Messages\UsuariosApp.Infra.Messages.csproj", "{B33B5DFC-9D64-4EB4-B7D0-1525B9D18511}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{BC6FF0AE-F7D8-442E-A21D-6F427D9E62F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BC6FF0AE-F7D8-442E-A21D-6F427D9E62F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BC6FF0AE-F7D8-442E-A21D-6F427D9E62F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B33B5DFC-9D64-4EB4-B7D0-1525B9D18511}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B33B5DFC-9D64-4EB4-B7D0-1525B9D18511}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B33B5DFC-9D64-4EB4-B7D0-1525B9D18511}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B33B5DFC-9D64-4EB4-B7D0-1525B9D18511}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -64,6 +70,7 @@ Global
 		{BD6146C8-ACE9-4603-B31A-0E8E972753B8} = {5CFFB86E-C852-45DA-89CE-5BBA5BF1E8B0}
 		{767796EB-A64A-46CF-90B1-5FDDB7A6E7D4} = {8BC42594-6D5D-4A8F-84BF-D71B8B533A04}
 		{BC6FF0AE-F7D8-442E-A21D-6F427D9E62F3} = {9C1ACC0B-24CA-4222-A70F-C06FD9D20DE4}
+		{B33B5DFC-9D64-4EB4-B7D0-1525B9D18511} = {8BC42594-6D5D-4A8F-84BF-D71B8B533A04}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A4419BEC-BEC7-4310-AA64-100A0FC25E61}
